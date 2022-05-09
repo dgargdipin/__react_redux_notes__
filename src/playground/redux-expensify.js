@@ -130,8 +130,14 @@ const setEndDate = (date) => ({
     date
 })
 store.subscribe(()=>{
-    console.log(store.getState());
+    const state=store.getState();
+    const visibleExpenses=getVisibleExpenses(state.expenses,state.filters)
+    console.log(visibleExpenses)
 })
+
+const getVisibleExpenses=(expenses,filters)=>{
+    return expenses
+}
 
 
 

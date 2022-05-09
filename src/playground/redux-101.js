@@ -1,4 +1,6 @@
 import { createStore } from "redux";
+
+
 const store=createStore((state={count:0},action)=>{
 
     console.log("callback called")
@@ -17,15 +19,17 @@ const store=createStore((state={count:0},action)=>{
             return state;
     }
 })
-
+const incrementCount=(payload={})=>(
+    {
+        type:'INCREMENT',
+        incrementBy:typeof payload.incrementBy==='number'?payload.incrementBy:1
+    }
+)
 
 const unsubscribe=store.subscribe(()=>{
     console.log(store.getState());
 })
-store.dispatch({
-    type: 'INCREMENT',
-    incrementBy:10
-})
+store.dispatch(incrementCount({incrementBy:10}))
 store.dispatch({
     type: 'DECREMENT',
     decrementBy:7

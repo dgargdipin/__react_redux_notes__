@@ -1,13 +1,13 @@
 import { createStore } from "redux";
-
+const add=({a,b},c)=>a+b+c;
+console.log(add({a:10,b:22},20))
 
 const store=createStore((state={count:0},action)=>{
 
     console.log("callback called")
     switch(action.type){
         case 'INCREMENT':
-            const incrementBy=typeof action.incrementBy==='number'?action.incrementBy:1;
-            return {count:state.count+incrementBy};
+            return {count:state.count+action.incrementBy};
         case 'DECREMENT':
             const decrementBy = typeof action.decrementBy === 'number' ? action.decrementBy : 1;
             return {count:state.count-decrementBy};

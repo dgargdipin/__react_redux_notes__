@@ -14,12 +14,13 @@ store.subscribe(()=>{
     // console.log(state)
     console.log(getVisibleExpenses(state.expenses,state.filters))
 })
-store.dispatch(addExpense({amount:100,description:'water bill'}));
-store.dispatch(addExpense({amount:200,description:'gas bill'}));
-store.dispatch(setFilter('water'))
-setTimeout(()=>{
-    store.dispatch(setFilter('bill'))
-},3000);
+store.dispatch(addExpense({amount:4500,description:'water bill'}));
+store.dispatch(addExpense({description:'gas bill',createdAt:1000}));
+store.dispatch(addExpense({amount:109500,description:'Rent'}));
+// store.dispatch(setFilter('water'))
+// setTimeout(()=>{
+//     store.dispatch(setFilter('bill'))
+// },3000);
 
 
 const root = ReactDOM.createRoot(

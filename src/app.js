@@ -16,8 +16,10 @@ store.subscribe(()=>{
 })
 store.dispatch(addExpense({amount:100,description:'water bill'}));
 store.dispatch(addExpense({amount:200,description:'gas bill'}));
-store.dispatch(setFilter('bill'))
 store.dispatch(setFilter('water'))
+setTimeout(()=>{
+    store.dispatch(setFilter('bill'))
+},3000);
 
 
 const root = ReactDOM.createRoot(

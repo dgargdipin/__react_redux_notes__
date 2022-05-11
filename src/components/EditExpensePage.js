@@ -1,10 +1,38 @@
 import React from "react";
-const EditExpensePage = (props) => {
-    console.log(props)
+import { connect } from "react-redux";
+import { editExpense,removeExpense } from "../actions/expenses";
+import ExpenseForm from "./ExpenseForm";
+
+const EditExpensePage = ({ expense, dispatch,history }) => {
+
+    console.log('expense passed',expense)
     return (
         <div>
-            This is from my edit dashboard component with id {props.match.params.id}
+            <ExpenseForm 
+                expense={expense}
+                onSubmit={
+                    (newExpense) => {
+                        // console.log(expense)
+                        dispatch(editExpense(expense.id,newExpense));
+                        history.push('/');
+                        
+                    }
+                }
+                
+            />
+            <button onClick={() => { 
+                dispatch(removeExpense({ id: expense.id }));
+                history.push('/');
+             }}>Remove</button>
         </div>
     )
 }
-export default EditExpensePage;
+const mapStateToProps = ({ expenses }, props) => {
+    return ({
+        expense: expenses.find(expense => {
+            return expense.id === props.match.params.id;
+        })
+    });
+}
+const ConnectedEditExpensePage = connect(mapStateToProps)(EditExpensePage)
+export default ConnectedEditExpensePage;

@@ -1,6 +1,6 @@
 import React from "react";
-import { removeExpense } from "../actions/expenses";
-const ExpenseListItem = ({ id,description, amount, createdAt, dispatch})=>{
+import { Link } from "react-router-dom";
+const ExpenseListItem = ({ id,description, amount, createdAt})=>{
     console.log(id)
     return (
         <div>
@@ -9,7 +9,7 @@ const ExpenseListItem = ({ id,description, amount, createdAt, dispatch})=>{
             <p>    amount:{amount} -
                 createdAt:{createdAt},
             </p>
-            <button onClick={() => {dispatch(removeExpense({id})) } }>Remove</button>
+            <Link to={`/edit/${id}`}>Edit</Link>
         </div>
     );
 }
